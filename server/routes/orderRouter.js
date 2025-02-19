@@ -1,7 +1,7 @@
 const express = require("express");
-const { getQuests } = require("../controllers/questsController");
 const router = express.Router();
+const { addOrder } = require("../controllers/orderController");
 
-router.get("/", getQuests);
+router.post("/", addOrder);
 
 module.exports = router;

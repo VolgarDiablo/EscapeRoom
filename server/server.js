@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const config = require("./config/config");
-const genresRoutes = require("./routes/genresRoutes");
-const questsRoutes = require("./routes/questsRoutes");
+const genreRoute = require("./routes/genreRoute");
+const questRoute = require("./routes/questRoute");
+const orderRoute = require("./routes/orderRouter");
 
 const app = express();
 
@@ -14,8 +15,9 @@ app.use(
 
 app.use(express.json());
 
-app.use("/genres", genresRoutes);
-app.use("/quests", questsRoutes);
+app.use("/genre", genreRoute);
+app.use("/quest", questRoute);
+app.use("/order", orderRoute);
 
 const PORT = config.PORT;
 app.listen(PORT, () => {
