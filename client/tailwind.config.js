@@ -6,6 +6,10 @@ module.exports = {
       fontFamily: {
         raleway: ["Raleway", "sans-serif"],
       },
+      backgroundImage: {
+        "gradient-radial":
+          "radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 100%)",
+      },
     },
   },
   plugins: [],
