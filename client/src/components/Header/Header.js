@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+import Nav from "./components/Nav";
 
 function Header() {
   return (
@@ -10,58 +11,7 @@ function Header() {
           <NavLink to="/">
             <img alt="Escape Room" src={Logo} className="h-[50px]" />
           </NavLink>
-          <ul className="flex flex-row gap-12 font-raleway font-semibold text-sm leading-[16.44px] tracking-[0.03em]">
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `${isActive ? "text-[#F2890F]" : ""} hover:text-[#F2890F]`
-                }
-              >
-                Квесты
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/starter"
-                className={({ isActive }) =>
-                  `${isActive ? "text-[#F2890F]" : ""} hover:text-[#F2890F]`
-                }
-              >
-                Новичкам
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/reviews"
-                className={({ isActive }) =>
-                  `${isActive ? "text-[#F2890F]" : ""} hover:text-[#F2890F]`
-                }
-              >
-                Отзывы
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/promotion"
-                className={({ isActive }) =>
-                  `${isActive ? "text-[#F2890F]" : ""} hover:text-[#F2890F]`
-                }
-              >
-                Акции
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contacts"
-                className={({ isActive }) =>
-                  `${isActive ? "text-[#F2890F]" : ""} hover:text-[#F2890F]`
-                }
-              >
-                Контакты
-              </NavLink>
-            </li>
-          </ul>
+          <Nav />
           <a href="tel:380639116763" className="">
             Позвонить: +380 (63) 911-67-63
           </a>
