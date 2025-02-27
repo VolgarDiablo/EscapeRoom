@@ -1,6 +1,6 @@
 import React from "react";
-import backgroundImage from "../../assets/bg-contacts.png";
-import gradientImage from "../../assets/bg-contacts__dark-gradient.png";
+import backgroundImage from "../../assets/images/bg-contacts.png";
+import gradientImage from "../../assets/images/bg-contacts__dark-gradient.png";
 
 function Contacts() {
   return (

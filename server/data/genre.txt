@@ -3,36 +3,36 @@
     "id": 1,
     "name": "Все квесты",
     "slug": "all-quests",
-    "icon": "/public/images/icons/all-quests.svg"
+    "path": "/assets/images/icons/all-quests.svg"
   },
   {
     "id": 2,
     "name": "Приключения",
     "slug": "adventures",
-    "icon": "/public/images/icons/adventures.svg"
+    "path": "/assets/images/icons/adventures.svg"
   },
   {
     "id": 3,
     "name": "Ужасы",
     "slug": "horror",
-    "icon": "/public/images/icons/horror.svg"
+    "path": "/assets/images/icons/horror.svg"
   },
   {
     "id": 4,
     "name": "Мистика",
-    "slug": "mystic",
-    "icon": "/public/images/icons/mystic.svg"
+    "slug": "mysticism",
+    "path": "/assets/images/icons/mysticism.svg"
   },
   {
     "id": 5,
     "name": "Детектив",
     "slug": "detective",
-    "icon": "/public/images/icons/detective.svg"
+    "path": "/assets/images/icons/detective.svg"
   },
   {
     "id": 6,
     "name": "Sci-fi",
     "slug": "sci-fi",
-    "icon": "/public/images/icons/sci-fi.svg"
+    "path": "/assets/images/icons/sci-fi.svg"
   }
 ]

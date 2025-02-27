@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   const styles = {
-    default: "hover:text-[#F2890F]",
-    active: "text-[#F2890F]",
+    default: "hover:text-activeText",
+    active: "text-activeText",
   };
 
   const links = [
@@ -31,7 +31,7 @@ function Nav() {
   ];
 
   return (
-    <ul className="flex flex-row gap-12 font-raleway font-semibold text-sm leading-[16.44px] tracking-[0.03em]">
+    <ul className="flex flex-row gap-12 ">
       {links.map((link) => (
         <NavLink
           key={link.to}
