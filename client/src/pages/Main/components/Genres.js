@@ -20,7 +20,7 @@ function Genres() {
     <div>
       {data.map((genre) => (
         <div key={genre.id}>
-          <img alt={genre.name} src={genre.path} />
+          <img alt={genre.name} src={genre.base64} />
           <span>{genre.name} </span>
         </div>
       ))}
