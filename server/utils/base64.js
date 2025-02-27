@@ -1,17 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 
-function base64() {
+function base64(data) {
   try {
-    const filePath = path.join(__dirname, "../data/genre.txt");
-    const data = fs.readFileSync(filePath, "utf-8");
     const genres = JSON.parse(data);
 
     const genresWithBase64 = genres.map((genre) => {
       const svgPath = path.join(__dirname, "..", genre.path);
       try {
         const svgData = fs.readFileSync(svgPath, "utf-8");
-
         const base64Data = `data:image/svg+xml;base64,${Buffer.from(
           svgData
         ).toString("base64")}`;
