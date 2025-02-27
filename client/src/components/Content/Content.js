@@ -11,7 +11,7 @@ function Content() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="contacts" element={<Contacts />} />
+          <Route path="/contacts" element={<Contacts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ErrorBoundary>
