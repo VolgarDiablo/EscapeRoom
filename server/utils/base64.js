@@ -1,27 +1,42 @@
 const fs = require("fs");
 const path = require("path");
 
-function base64(data) {
+function base64(data, filePath) {
   try {
-    const genres = JSON.parse(data);
+    let genres = JSON.parse(data);
 
     const genresWithBase64 = genres.map((genre) => {
-      const svgPath = path.join(__dirname, "..", genre.path);
+      if (!genre.path) {
+        return genre;
+      }
+
+      const imgPath = path.join(__dirname, genre.path);
+
       try {
-        const svgData = fs.readFileSync(svgPath, "utf-8");
+        const imgData = fs.readFileSync(imgPath, "utf-8");
         const base64Data = `data:image/svg+xml;base64,${Buffer.from(
-          svgData
+          imgData
         ).toString("base64")}`;
-        return { ...genre, base64: base64Data };
+
+        const { path, ...updatedGenre } = genre;
+        return { ...updatedGenre, base64: base64Data };
       } catch (err) {
-        console.error(`Ошибка при чтении файла ${svgPath}:`, err);
-        return { ...genre, base64: null };
+        console.error(`Ошибка при чтении файла ${imgPath}:`, err);
+
+        const { path, ...updatedGenre } = genre;
+        return updatedGenre;
       }
     });
 
+    fs.writeFileSync(
+      filePath,
+      JSON.stringify(genresWithBase64, null, 2),
+      "utf-8"
+    );
+
     return genresWithBase64;
   } catch (error) {
-    console.error("Ошибка чтения жанров:", error);
+    console.error("Ошибка парсинга JSON:", error);
     return [];
   }
 }

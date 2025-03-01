@@ -6,7 +6,7 @@ const getGenre = (req, res) => {
   try {
     const filePath = path.join(__dirname, "../data/genre.txt");
     const data = fs.readFileSync(filePath, "utf-8");
-    const arrayData64 = base64(data);
+    const arrayData64 = base64(data, filePath);
     res.json(arrayData64);
   } catch (error) {
     console.error("Ошибка чтения файла:", error);
