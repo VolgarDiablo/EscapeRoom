@@ -34,7 +34,7 @@ function Genres() {
               className="w-[30px] h-[30px]"
             />
             <span
-              className={`text-[14px] leading-[19.6px] ${
+              className={`text-[14px] leading-[19.6px] mb-1 ${
                 activeGenre === genre.id
                   ? "border-b-2 border-solid border-[#F2890F] text-[#E6E6E6]"
                   : ""

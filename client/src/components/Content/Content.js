@@ -2,8 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ErrorBoundary from "../../ErrorBoundary";
 import Main from "../../pages/Main/Main";
-import Contacts from "../../pages/Contacts/Contacts";
-import NotFound from "../../pages/NotFound/NotFound";
+import Contacts from "../Contacts/Contacts";
+import NotFound from "../NotFound/NotFound";
 
 function Content() {
   return (
