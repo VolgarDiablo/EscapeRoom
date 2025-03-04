@@ -1,5 +1,5 @@
 import React from "react";
-import Genres from "./components/Genres";
+import Genre from "./components/Genre";
 
 function Main() {
   return (
@@ -12,7 +12,7 @@ function Main() {
           Выберите тематику
         </h1>
         <div className="pt-12">
-          <Genres />
+          <Genre />
         </div>
         <div></div>
       </div>

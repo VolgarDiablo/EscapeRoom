@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const fetchGenres = async () => {
+const fetchGenre = async () => {
   const { data } = await axios.get("http://localhost:8080/genre");
   return data;
 };
 
-function Genres() {
+function Genre() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["genres"],
-    queryFn: fetchGenres,
+    queryKey: ["genre"],
+    queryFn: fetchGenre,
   });
 
   const [activeGenre, setActiveGenre] = useState(null);
@@ -34,7 +34,7 @@ function Genres() {
               className="w-[30px] h-[30px]"
             />
             <span
-              className={`text-[14px] leading-[19.6px] mb-1 ${
+              className={`text-[14px] leading-[19.6px] ${
                 activeGenre === genre.id
                   ? "border-b-2 border-solid border-[#F2890F] text-[#E6E6E6]"
                   : ""
@@ -50,4 +50,4 @@ function Genres() {
   );
 }
 
-export default Genres;
+export default Genre;
