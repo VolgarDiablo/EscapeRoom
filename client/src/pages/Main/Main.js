@@ -1,5 +1,6 @@
 import React from "react";
 import Genre from "./components/Genre";
+import Quest from "./components/Quest";
 
 function Main() {
   return (
@@ -11,10 +12,12 @@ function Main() {
         <h1 className="text-white text-[64px] leading-[70.4px]">
           Выберите тематику
         </h1>
-        <div className="pt-12">
+        <div className="pt-12 w-full">
           <Genre />
         </div>
-        <div></div>
+        <div className="w-full">
+          <Quest />
+        </div>
       </div>
     </div>
   );
