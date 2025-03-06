@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const mime = require("mime-types");
 
 function base64(data, filePath) {
   try {
@@ -13,10 +14,16 @@ function base64(data, filePath) {
       const imgPath = path.join(__dirname, genre.path);
 
       try {
-        const imgData = fs.readFileSync(imgPath, "utf-8");
-        const base64Data = `data:image/svg+xml;base64,${Buffer.from(
-          imgData
-        ).toString("base64")}`;
+        const mimeType = mime.lookup(imgPath);
+        if (!mimeType) {
+          throw new Error(`Не удалось определить MIME-тип для ${imgPath}`);
+        }
+
+        const imgData = fs.readFileSync(imgPath);
+
+        const base64Data = `data:${mimeType};base64,${imgData.toString(
+          "base64"
+        )}`;
 
         const { path, ...updatedGenre } = genre;
         return { ...updatedGenre, base64: base64Data };
