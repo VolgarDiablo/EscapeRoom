@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { base64 } = require("../utils/base64");
 
-const getQuest = (req, res) => {
+const getAllQuest = (req, res) => {
   try {
     const filePath = path.join(__dirname, "../data/quest.txt");
     const data = fs.readFileSync(filePath, "utf-8");
@@ -14,4 +14,17 @@ const getQuest = (req, res) => {
   }
 };
 
-module.exports = { getQuest };
+const getQuestById = (req, res) => {
+  try {
+    const questId = req.params.id;
+    const filePath = path.join(__dirname, "../data/quest.txt");
+    const data = fs.readFileSync(filePath, "utf-8");
+    const quest = JSON.parse(data);
+    res.json({ message: `${questId}`, quest });
+  } catch (error) {
+    console.error("Ошибка чтения файла:", error);
+    res.status(500).json({ error: "Ошибка сервера при чтении жанров" });
+  }
+};
+
+module.exports = { getAllQuest, getQuestById };

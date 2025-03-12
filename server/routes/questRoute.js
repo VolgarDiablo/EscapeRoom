@@ -1,7 +1,8 @@
 const express = require("express");
-const { getQuest } = require("../controllers/questController");
+const { getAllQuest, getQuestById } = require("../controllers/questController");
 const router = express.Router();
 
-router.get("/", getQuest);
+router.get("/", getAllQuest);
+router.get("/:id", getQuestById);
 
 module.exports = router;
