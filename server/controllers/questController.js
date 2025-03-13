@@ -16,11 +16,14 @@ const getAllQuest = (req, res) => {
 
 const getQuestById = (req, res) => {
   try {
-    const questId = req.params.id;
+    const questId = parseInt(req.params.id);
     const filePath = path.join(__dirname, "../data/quest.txt");
-    const data = fs.readFileSync(filePath, "utf-8");
-    const quest = JSON.parse(data);
-    res.json({ message: `${questId}`, quest });
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+    const quest = data.find((quest) => quest.id === questId);
+    console.log(quest);
+
+    res.json(quest);
   } catch (error) {
     console.error("Ошибка чтения файла:", error);
     res.status(500).json({ error: "Ошибка сервера при чтении жанров" });
