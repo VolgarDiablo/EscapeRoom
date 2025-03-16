@@ -19,10 +19,7 @@ const getQuestById = (req, res) => {
     const questId = parseInt(req.params.id);
     const filePath = path.join(__dirname, "../data/quest.txt");
     const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-
     const quest = data.find((quest) => quest.id === questId);
-    console.log(quest);
-
     res.json(quest);
   } catch (error) {
     console.error("Ошибка чтения файла:", error);
