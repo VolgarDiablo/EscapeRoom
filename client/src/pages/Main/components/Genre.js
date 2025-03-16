@@ -24,7 +24,7 @@ function Genre() {
         return (
           <div
             key={genre.id}
-            className={`flex flex-row items-center cursor-pointer gap-3 mr-10 text-[#E6E6E6] ${
+            className={`flex flex-row items-center cursor-pointer gap-3 mr-10 text-[#E5E5E5] ${
               index === 0 ? "ml-0" : "ml-10"
             }`}
           >
@@ -36,7 +36,7 @@ function Genre() {
             <span
               className={`text-[14px] leading-[19.6px] ${
                 activeGenre === genre.id
-                  ? "border-b-2 border-solid border-[#F2890F] text-[#E6E6E6]"
+                  ? "border-b-2 border-solid border-[#F2890F] text-[#E5E5E5]"
                   : ""
               } `}
               onClick={() => setActiveGenre(genre.id)}
