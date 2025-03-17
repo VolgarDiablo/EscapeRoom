@@ -7,7 +7,7 @@ function Header() {
   return (
     <header className="text-[#F0F0F0] z-10 fixed top-0 w-full">
       <div className="max-w-[1300px] mx-auto">
-        <nav className="flex flex-row justify-around items-center h-[75px] font-semibold text-sm leading-[16.44px] tracking-[0.03em]">
+        <nav className="flex flex-row justify-between items-center h-[75px] font-semibold text-sm leading-[16.44px] tracking-[0.03em]">
           <NavLink to="/">
             <img alt="Escape Room" src={Logo} className="h-[50px]" />
           </NavLink>

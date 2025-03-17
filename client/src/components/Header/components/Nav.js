@@ -31,7 +31,7 @@ function Nav() {
   ];
 
   return (
-    <ul className="flex flex-row gap-12 ">
+    <ul className="flex flex-row gap-12 uppercase">
       {links.map((link) => (
         <NavLink
           key={link.to}
