@@ -1,6 +1,7 @@
 import React from "react";
 import backgroundImage from "../../assets/images/bg-contacts.png";
 import gradientImage from "../../assets/images/bg-contacts__dark-gradient.png";
+import SeparatorHor from "../../assets/icons/SeparatorHor";
 
 function Contacts() {
   return (
@@ -18,6 +19,17 @@ function Contacts() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       ></div>
+      <div className="max-w-[1080px]">
+        <div>
+          <span>Квесты в Киеве</span>
+          <h1>Контакты</h1>
+        </div>
+        <SeparatorHor />
+        <div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </div>
   );
 }
