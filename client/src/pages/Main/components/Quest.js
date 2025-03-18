@@ -13,11 +13,14 @@ const fetchQuest = async () => {
 
 function Quest() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["quest"],
+    queryKey: ["quests"],
     queryFn: fetchQuest,
+    refetchOnWindowFocus: false,
   });
 
-  if (isLoading) return <div className="text-center text-xl">Загрузка...</div>;
+  if (isLoading)
+    return <div className="text-center text-xl text-white">Загрузка...</div>;
+
   if (error)
     return (
       <div className="text-red-500 text-center">Ошибка загрузки данных</div>

@@ -11,12 +11,18 @@ function Genre() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["genre"],
     queryFn: fetchGenre,
+    refetchOnWindowFocus: false,
   });
 
   const [activeGenre, setActiveGenre] = useState(null);
 
-  if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка загрузки данных</div>;
+  if (isLoading)
+    return <div className="text-center text-xl text-white">Загрузка...</div>;
+
+  if (error)
+    return (
+      <div className="text-red-500 text-center">Ошибка загрузки данных</div>
+    );
 
   return (
     <div className="flex flex-wrap items-center mb-[20px] h-10">
