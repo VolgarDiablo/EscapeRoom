@@ -6,6 +6,7 @@ import People from "../../assets/icons/People";
 import Puzzle from "../../assets/icons/Puzzle";
 import Clock from "../../assets/icons/Clock";
 import SeparatorBig from "../../assets/icons/SeparatorBig";
+import ModalBooking from "./component/ModalBooking";
 
 const fetchQuest = async (id) => {
   const { data } = await axios.get(`http://localhost:8080/quest/${id}`);
@@ -62,10 +63,11 @@ function RenderQuest() {
           {data.description}
         </p>
 
-        <button className="mt-6 bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-lg font-bold">
+        <button className="mt-6 bg-[#F28A0F] hover:bg-[#F39425] text-white py-2 px-6 rounded-lg font-bold">
           ЗАБРОНИРОВАТЬ
         </button>
       </div>
+      <ModalBooking />
     </div>
   );
 }
