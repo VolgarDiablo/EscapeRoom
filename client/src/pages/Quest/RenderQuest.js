@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -20,6 +20,8 @@ function RenderQuest() {
     queryKey: ["quest"],
     queryFn: () => fetchQuest(id),
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (isLoading) return <div className="text-center text-xl">Загрузка...</div>;
   if (error)
@@ -63,11 +65,17 @@ function RenderQuest() {
           {data.description}
         </p>
 
-        <button className="mt-6 bg-[#F28A0F] hover:bg-[#F39425] text-white py-2 px-6 rounded-lg font-bold">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="mt-6 bg-[#F28A0F] hover:bg-[#F39425] text-white py-2 px-6 rounded-lg font-bold"
+        >
           ЗАБРОНИРОВАТЬ
         </button>
       </div>
-      <ModalBooking />
+      <ModalBooking
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
