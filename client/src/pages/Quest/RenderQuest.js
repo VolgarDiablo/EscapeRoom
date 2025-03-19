@@ -35,7 +35,7 @@ function RenderQuest() {
         }}
       ></div>
       <div className="absolute top-1/2 right-16 transform -translate-y-1/2 max-w-[680px] p-6 text-white text-left">
-        <span className="text-sm font-medium text-[#F2890F]">
+        <span className="text-sm font-medium text-activeText">
           {data.category}
         </span>
 
