@@ -12,9 +12,9 @@ function Header() {
             <img alt="Escape Room" src={Logo} className="h-[50px]" />
           </NavLink>
           <Nav />
-          <a href="tel:380639116763" className="">
-            Позвонить: +380 (63) 911-67-63
-          </a>
+          <p>
+            <a href="tel:380639116763">Позвонить: +380 (63) 911-67-63</a>
+          </p>
         </nav>
       </div>
     </header>
