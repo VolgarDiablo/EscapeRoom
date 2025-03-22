@@ -42,14 +42,15 @@ function Quest() {
               </h3>
               <h4 className="text-white text-lg font-semibold">{quest.name}</h4>
               <div className="flex items-center text-[#E5E5E5] text-sm mt-2 ">
-                <span className="flex items-center gap-1 opacity-80">
+                <span className="flex items-center gap-2 opacity-80">
                   <People />
-                  {quest.players} чел
+                  {quest.playersMin} — {quest.playersMax}
+                  чел
                 </span>
                 <span className="mx-3">
                   <Separator />
                 </span>
-                <span className="flex items-center gap-1 opacity-80">
+                <span className="flex items-center gap-2 opacity-80">
                   <Puzzle />
                   {quest.difficulty}
                 </span>
