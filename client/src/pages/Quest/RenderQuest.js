@@ -47,12 +47,12 @@ function RenderQuest() {
         <div className="flex gap-6 text-[#E5E5E5] text-[14px] font-normal pb-5">
           <span className="flex items-center gap-2 text-[#FFFFFF] leading-[95%]">
             <Clock />
-            {data.duration}
+            {data.duration} мин
           </span>
           <SeparatorBig />
           <span className="flex items-center gap-2">
             <People />
-            {data.players} чел
+            {data.playersMin} — {data.playersMax} чел
           </span>
           <SeparatorBig />
           <span className="flex items-center gap-2">
@@ -75,6 +75,8 @@ function RenderQuest() {
       <ModalBooking
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        playersMin={data.playersMin}
+        playersMax={data.playersMax}
       />
     </div>
   );
