@@ -54,7 +54,7 @@ function Quest() {
               alt={quest.title}
               className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute bottom-0 left-0 w-full h-[120px] bg-gradient-to-t from-[#1C1B1B] to-[#2E2E2E]/0 flex flex-col justify-end p-5">
+            <div className="absolute bottom-0 left-0 w-full h-[120px] bg-gradient-to-t from-[#1C1B1B] to-[#2E2E2E]/0 flex flex-col justify-end p-5 text-left">
               <h3 className="text-white text-2xl font-bold">{quest.title}</h3>
               <h4 className="text-white text-lg font-semibold">{quest.name}</h4>
               <div className="flex items-center text-[#E5E5E5] text-sm mt-2">
