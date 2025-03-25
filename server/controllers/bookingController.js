@@ -34,7 +34,7 @@ const addBooking = (req, res) => {
       if (err) throw err;
     });
     console.log(myObject);
-    res.send("Ваша заявка успешно была оформлена");
+    res.json({ message: "Ваша заявка успешно была оформлена" });
   } catch (error) {
     console.error("Ошибка добавления заяви:", error);
     res.status(500).json({ error: "Ошибка сервера при добавление заявки" });
