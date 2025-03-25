@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const addOrder = (req, res) => {
+const addBooking = (req, res) => {
   try {
-    const order = req.body;
-    const filePath = path.join(__dirname, "../data/order.txt");
+    const booking = req.body;
+    const filePath = path.join(__dirname, "../data/booking.txt");
     const data = fs.readFileSync(filePath, "utf-8");
     let myObject = JSON.parse(data);
 
@@ -26,9 +26,9 @@ const addOrder = (req, res) => {
       .getSeconds()
       .toString()
       .padStart(2, "0")}`;
-    order.time = formattedTime;
+    booking.time = formattedTime;
 
-    myObject.unshift(order);
+    myObject.unshift(booking);
     const newData = JSON.stringify(myObject, null, 2);
     fs.writeFile(filePath, newData, (err) => {
       if (err) throw err;
@@ -41,4 +41,4 @@ const addOrder = (req, res) => {
   }
 };
 
-module.exports = { addOrder };
+module.exports = { addBooking };

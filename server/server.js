@@ -3,7 +3,7 @@ const cors = require("cors");
 const config = require("./config/config");
 const genreRoute = require("./routes/genreRoute");
 const questRoute = require("./routes/questRoute");
-const orderRoute = require("./routes/orderRouter");
+const bookingRoute = require("./routes/bookingRouter");
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use("/genre", genreRoute);
 app.use("/quest", questRoute);
-app.use("/order", orderRoute);
+app.use("/booking", bookingRoute);
 
 const PORT = config.PORT;
 app.listen(PORT, () => {
