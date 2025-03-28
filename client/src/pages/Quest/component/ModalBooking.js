@@ -1,9 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useForm, useField } from "@tanstack/react-form";
+import { z } from "zod";
 import CheckBox from "../../../assets/icons/CheckBox";
 import CloseModal from "../../../assets/icons/CloseModal";
 
-function ModalBooking({ isOpen, onClose }) {
+const formSchema = (playersMin, playersMax) =>
+  z.object({
+    name: z
+      .string()
+      .min(1, "Имя обязательно")
+      .regex(
+        /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ\s'-]+$/,
+        "Имя должно содержать только буквы"
+      ),
+    phone: z
+      .string()
+      .regex(/^\d+$/, "Телефон должен содержать только цифры")
+      .regex(/^380\d{9}$/, "Введите номер в формате 380XXXXXXXXX"),
+    countParticipants: z
+      .string()
+      .min(1, "Введите количество участников")
+      .refine((val) => !isNaN(Number(val)), { message: "Введите число" })
+      .refine((val) => Number(val) >= playersMin, {
+        message: `Количество участников должно быть не меньше чем ${playersMin}`,
+      })
+      .refine((val) => Number(val) <= playersMax, {
+        message: `Количество участников должно быть не больше чем ${playersMax}`,
+      }),
+  });
+
+function ModalBooking({ isOpen, onClose, playersMin, playersMax }) {
   const [agreed, setAgreed] = useState(false);
 
   useEffect(() => {
@@ -23,7 +49,6 @@ function ModalBooking({ isOpen, onClose }) {
       countParticipants: "",
     },
     onSubmit: async ({ value }) => {
-      console.log("✅ Отправка пошла", value);
       try {
         const response = await fetch("http://localhost:8080/booking", {
           method: "POST",
@@ -40,9 +65,6 @@ function ModalBooking({ isOpen, onClose }) {
           return;
         }
 
-        const data = await response.json();
-        console.log("Успешно отправлено:", data);
-
         form.reset();
         setAgreed(false);
       } catch (error) {
@@ -52,9 +74,29 @@ function ModalBooking({ isOpen, onClose }) {
     },
   });
 
-  const nameField = useField({ form, name: "name" });
-  const phoneField = useField({ form, name: "phone" });
-  const countField = useField({ form, name: "countParticipants" });
+  const nameField = useField({
+    form,
+    name: "name",
+    validators: {
+      onSubmit: formSchema(playersMin, playersMax).shape.name,
+    },
+  });
+
+  const phoneField = useField({
+    form,
+    name: "phone",
+    validators: {
+      onSubmit: formSchema(playersMin, playersMax).shape.phone,
+    },
+  });
+
+  const countField = useField({
+    form,
+    name: "countParticipants",
+    validators: {
+      onSubmit: formSchema(playersMin, playersMax).shape.countParticipants,
+    },
+  });
 
   if (!isOpen) return null;
 
@@ -65,7 +107,11 @@ function ModalBooking({ isOpen, onClose }) {
         onClick={onClose}
       />
       <form
-        onSubmit={form.handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit(e);
+          console.log("clicked");
+        }}
         className="relative bg-[#141414] rounded-[3px] p-8 text-[#FFFFFF] max-w-[480px] text-left flex flex-col gap-10"
       >
         <div className="flex justify-between items-center">
@@ -87,6 +133,17 @@ function ModalBooking({ isOpen, onClose }) {
               placeholder="Имя"
               className="border border-[#FFFFFF] border-opacity-60 rounded px-6 py-4 bg-inherit placeholder-[#E6E6E6] placeholder-opacity-40"
             />
+            {/* {nameField.state.meta.errors && (
+              <p className="text-red-500 text-sm">
+                {nameField.state.meta.errors}
+              </p>
+            )} */}
+            {Array.isArray(nameField.state.meta.errors) &&
+              nameField.state.meta.errors[0]?.message && (
+                <p className="text-red-500 text-sm">
+                  {nameField.state.meta.errors[0].message}
+                </p>
+              )}
           </label>
 
           <label className="text-[14px] flex flex-col gap-3 leading-[150%] font-medium">
@@ -95,9 +152,15 @@ function ModalBooking({ isOpen, onClose }) {
               name={phoneField.name}
               value={phoneField.state.value}
               onChange={(e) => phoneField.handleChange(e.target.value)}
-              placeholder="Телефон"
+              placeholder="Ваш телефон"
               className="border border-[#FFFFFF] border-opacity-60 rounded px-6 py-4 bg-inherit placeholder-[#E6E6E6] placeholder-opacity-40"
             />
+            {Array.isArray(phoneField.state.meta.errors) &&
+              phoneField.state.meta.errors[0]?.message && (
+                <p className="text-red-500 text-sm">
+                  {phoneField.state.meta.errors[0].message}
+                </p>
+              )}
           </label>
 
           <label className="text-[14px] flex flex-col gap-3 leading-[150%] font-medium">
@@ -109,6 +172,12 @@ function ModalBooking({ isOpen, onClose }) {
               placeholder="Количество участников"
               className="border border-[#FFFFFF] border-opacity-60 rounded px-6 py-4 bg-inherit placeholder-[#E6E6E6] placeholder-opacity-40"
             />
+            {Array.isArray(countField.state.meta.errors) &&
+              countField.state.meta.errors[0]?.message && (
+                <p className="text-red-500 text-sm">
+                  {countField.state.meta.errors[0].message}
+                </p>
+              )}
           </label>
         </div>
 
